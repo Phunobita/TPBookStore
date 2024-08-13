@@ -1,0 +1,207 @@
+.mobile-block {
+    display: none;
+}
+
+.btn-mobile {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    /* tablet devices */
+    .main-wrap {
+        margin-left: 220px;
+    }
+
+    .col-search {
+        display: flex;
+        justify-content:center;
+        padding-bottom: 20px;
+    }
+
+    .col-search .searchform {
+        width: 80%;
+    }
+
+    /* Sliders and banner */
+    .admin__sliders-banner-table th ,
+    .admin__sliders-banner-table-content tr {
+        font-size: 14px;
+    }
+
+    .admin__sliders-banner-table-id {
+        width: 7%;
+      
+      }
+      
+      .admin__sliders-banner-table-img {
+      width: 52%;
+      }
+      
+    .admin__sliders-banner-table-content td>img {
+        width : 100%;
+      }
+    
+}
+@media (max-width: 992px) {
+    /* small tablet devices */
+    .itemlist .col-price {
+        text-align: right;
+    }
+    .itemlist .col-check {
+        display: none;
+    }
+
+    .card-header .col-check {
+        display: none;
+    }
+}
+@media all and (max-width: 768px) {
+    /* mobile devices */
+    .mobile-block {
+        display: block !important;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+
+    /* .btn-mobile {
+        display: inline-block !important;
+    } */
+
+    .navbar-aside {
+        z-index: 900;
+        transform: translateX(-100%);
+        overflow-x: hidden;
+        transition: visibility 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+    .navbar-aside .aside-top .logo {
+        height: 40px;
+    }
+
+    .navbar-aside.show {
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    .mobile-offcanvas {
+        visibility: hidden;
+        transform: translateX(-100%);
+        border-radius: 0;
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 1200;
+        width: 80%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        transition: visibility 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+    .mobile-offcanvas.show {
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    .main-wrap {
+        margin-left: 0 !important;
+    }
+
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    .content-header .content-title {
+        margin-bottom: 1rem;
+    }
+
+    .card-header input.form-control {
+        margin-bottom: 1rem;
+    }
+
+    .order-info-wrap .icontext {
+        margin-bottom: 1rem;
+    }
+
+    .table-responsive table {
+        min-width: 700px;
+    }
+
+    /* Sliders and banner */
+    .admin__sliders-banner-table th ,
+    .admin__sliders-banner-table-content tr {
+        font-size: 10px;
+    }
+
+    .admin__sliders-banner-table-id {
+        width: 5%;
+      
+      }
+      
+      .admin__sliders-banner-table-name {
+        width: 8%;
+      }
+      
+      .admin__sliders-banner-table-img {
+      width: 54%;
+      }
+      
+      .admin__sliders-banner-table-link {
+      width: 20%;
+      }
+      
+    
+    .admin__sliders-banner-table-content td>img {
+        width : 100%;
+      }
+
+    .card-product-grid {
+        width: 366px;
+    }
+    
+}
+
+/* tablet and mobile */
+@media (max-width: 1023px) {
+    .col-nav .btn-mobile {
+        display: inline-block !important;
+    }
+
+    .main-header {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .main-header .col-nav {
+        order: 1;
+        width: 100%;
+        margin-bottom: 0.8rem;
+        margin-left: auto;
+        justify-content:flex-end;
+    }
+    .main-header .col-search {
+        flex-grow: 1;
+        width: 100%;
+        order: 2;
+    }
+    .navbar-aside {
+        z-index: 900;
+        transform: translateX(-100%);
+        overflow-x: hidden;
+        transition: visibility 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+    .navbar-aside .aside-top .logo {
+        height: 40px;
+    }
+
+    .navbar-aside.show {
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    .main-wrap {
+        margin-left: 0px !important;
+    }
+}

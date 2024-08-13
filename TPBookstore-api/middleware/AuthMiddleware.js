@@ -1,0 +1,72 @@
+import jwt from "jsonwebtoken";
+import expressAsyncHandler from "express-async-handler";
+import User from "../models/UserModel.js";
+
+const protect = expressAsyncHandler(async (req, res, next) => {
+    {
+        let token;
+        if (req.headers.authorization && req.headers.authorization.startsWith("Bearer"))
+            try {
+                token = req.headers.authorization.split(" ")[1];
+                const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+                const userId = decoded.id || null;
+                req.user = await User.findOne({ _id: userId, isDisabled: false }).select("-password");
+                next();
+            } catch (error) {
+                console.error(`Error when protect auth middleware: ${error}`);
+                res.status(401);
+                throw new Error("Not authorized, token failed");
+            }
+        if (!token) {
+            res.status(401);
+            throw new Error("Not authorized, no token");
+        }
+    }
+});
+
+const shipper = (req, res, next) => {
+    if ((req.user && req.user.role === "shipper") || req.user.role === "admin") {
+        next();
+    } else {
+        res.status(401);
+        throw new Error("Not authorized as an shipper");
+    }
+};
+
+const staff = (req, res, next) => {
+    if (req.user && (req.user.role === "staff" || req.user.role === "admin")) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error("Not authorized as an staff");
+    }
+};
+
+const admin = (req, res, next) => {
+    if (req.user && req.user.role === "admin") {
+        next();
+    } else {
+        res.status(401);
+        throw new Error("Not authorized as an Admin");
+    }
+};
+
+const optional = expressAsyncHandler(async (req, res, next) => {
+    {
+        let token;
+        if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+            token = req.headers.authorization.split(" ")[1];
+            try {
+                const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+                const userId = decoded.id || null;
+                req.user = await User.findOne({ _id: userId, isDisabled: false }).select("-password");
+            } catch (error) {
+                res.status(401);
+                throw new Error("Not authorized, token failed");
+            }
+        }
+        next();
+    }
+});
+
+export { protect, shipper, staff, admin, optional };
